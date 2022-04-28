@@ -42,6 +42,13 @@ app.get('/api', (req, res) => {
     if(apiKey !== keys){
         res.send({data: 'API Key not valid' });
     }
+
+    app.use((req,res,next)=>{
+        res.setHeader('Acces-Control-Allow-Origin','*');
+        res.setHeader('Acces-Control-Allow-Methods','GET');
+        res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
+        next(); 
+    })
     
     let rawdata = fs.readFileSync('./json/kantine.json');
     let student = JSON.parse(rawdata);
