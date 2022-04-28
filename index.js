@@ -11,7 +11,7 @@ const keys = "techcollege"
 
 console.log(`\x1b[32m [${timeDate()}] [STARTING] - kantine menu  \x1b[0m`);
 
-let j = schedule.scheduleJob('00 * * * * *', function(){  // this for one hour
+let j = schedule.scheduleJob('00 00/30 * * * *', function(){  // this for one hour
     const url = "https://infoskaerm.techcollege.dk/umbraco/api/content/getcanteenmenu/?type=json";
 
     fetch(url)
@@ -30,7 +30,6 @@ let j = schedule.scheduleJob('00 * * * * *', function(){  // this for one hour
 
 });
 
-
 app.get('/api', (req, res) => {
 
     const {apiKey} = req.query;
@@ -48,7 +47,7 @@ app.get('/api', (req, res) => {
 
 
     res.send(student);
-    userCheacker();
+    userCheacker(res)
 
 });
 

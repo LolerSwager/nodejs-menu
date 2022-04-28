@@ -1,17 +1,10 @@
 import fetch from "node-fetch";
 import timeDate from "./cal.js";
-import FreeGeoIp from "../config/config.js";
+import requestIp from 'request-ip';
 
-export default function userCheacker(){
-    
-    const apikey = FreeGeoIp();
-
-    const url = `https://api.freegeoip.app/json/?apikey=${apikey}`;
-    
-    fetch(url)
-        .then(res => res.json())
-        .then((out) => {
-            return console.log(`\x1b[35m [${timeDate()}] [USEDBY | ${out.ip}] - userCheacker \x1b[0m`);
-        })
-        .catch(err => {return console.log(`\x1b[31m [${new Date().toLocaleString()}] [ERROR] [${err}] - userCheacker  \x1b[0m`) });
+export default function userCheacker(res){
+    const idAddress = res.connection.remoteAddress;
+    return(
+        console.log(`\x1b[35m [${timeDate()}] [USEDBY | ${idAddress}] - userCheacker  \x1b[0m`)
+    );
 }
