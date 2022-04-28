@@ -32,6 +32,9 @@ let j = schedule.scheduleJob('00 00/30 * * * *', function(){  // this for one ho
 });
 
 app.get('/api', (req, res) => {
+    res.setHeader('Acces-Control-Allow-Origin','*');
+    res.setHeader('Acces-Control-Allow-Methods','GET');
+    res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
 
     const {apiKey} = req.query;
 
@@ -43,12 +46,7 @@ app.get('/api', (req, res) => {
         res.send({data: 'API Key not valid' });
     }
 
-    app.use((req,res,next)=>{
-        res.setHeader('Acces-Control-Allow-Origin','*');
-        res.setHeader('Acces-Control-Allow-Methods','GET');
-        res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
-        next(); 
-    })
+    
     
     let rawdata = fs.readFileSync('./json/kantine.json');
     let student = JSON.parse(rawdata);
