@@ -34,7 +34,7 @@ let j = schedule.scheduleJob('00 00/30 * * * *', function(){  // this for one ho
 app.get('/api', (req, res) => {
     res.setHeader('Acces-Control-Allow-Origin','*');
     res.setHeader('Acces-Control-Allow-Methods','GET');
-    res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','Authorization');
+    res.setHeader('Acces-Contorl-Allow-Methods','Content-Type','application/json');
 
     const {apiKey} = req.query;
 
