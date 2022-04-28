@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 import fs from "fs";
 import userCheacker from './components/userCheacker.js';
 import timeDate from "./components/cal.js";
-const port = process.env.PORT || 8080;
+const port = 8080;
 
 const app = express();
 
@@ -52,4 +52,4 @@ app.get('/api', (req, res) => {
 
 });
 
-app.listen(port);
+app.listen(process.env.PORT || port,() => console.log(`port is on ${port}`));
