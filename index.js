@@ -48,7 +48,7 @@ app.get('/api', (req, res) => {
 
 
     res.send(student);
-    userCheacker(res)
+    userCheacker(req)
 
 });
 
