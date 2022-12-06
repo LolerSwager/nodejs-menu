@@ -78,7 +78,7 @@ app.get("/info", (req, res) => {
             <li>Time: ${timeDate()}</li>
             <li>Your ip: ${ipAddress}</li>
             <li>Api will run every 30min</li>
-            <li>Api link: https://nodejs-menu.vercel.app/api?apiKey=techcollege</li>
+            <li>Api link: <a href="https://nodejs-menu.vercel.app/api?apiKey=techcollege">https://nodejs-menu.vercel.app/api?apiKey=techcollege</a></li>
         </ul>`
     )
 })
