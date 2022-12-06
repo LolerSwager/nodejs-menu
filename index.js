@@ -6,6 +6,9 @@ import userCheacker from "./components/userCheacker.js"
 import timeDate from "./components/cal.js"
 const port = 8080
 
+import cors from "cors"
+
+
 const app = express()
 
 const keys = "techcollege"
@@ -32,43 +35,22 @@ let j = schedule.scheduleJob("00 00/30 * * * *", function () {
         })
 })
 
-app.use(function (req, res, next) {
-    // Website you wish to allow to connect
-    res.setHeader("Access-Control-Allow-Origin", "*")
-
-    // Request methods you wish to allow
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE")
-
-    // Request headers you wish to allow
-    res.setHeader(
-        "Access-Control-Allow-Headers",
-        "Content-Type, Authorization, Accept, Accept-Language, X-Authorization, X-Requested-With,content-type"
-    )
-
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader("Access-Control-Allow-Credentials", true)
-
-    next()
-})
-
-app.get("/api", (req, res) => {
-    const { apiKey } = req.query
-
-    if (!apiKey) {
-        res.sendStatus(400)
-    }
-
-    if (apiKey !== keys) {
-        res.send({ data: "API Key not valid" })
-    }
-
-    let rawdata = fs.readFileSync("./json/kantine.json")
-    let student = JSON.parse(rawdata)
-
-    res.send(student)
-    userCheacker(req)
-})
+app.use(
+    cors({
+        origin: "*",
+        methods: ["GET", "POST", "OPTIONS", "PUT", "PATCH", "DELETE"],
+        allowedHeaders: [
+            "Content-Type",
+            "Authorization",
+            "Accept",
+            "Accept-Language",
+            "X-Authorization",
+            "X-Requested-With",
+            "content-type",
+        ],
+        credentials: true,
+    })
+)
 
 app.get("/info", (req, res) => {
     const ipAddress = req.headers["x-forwarded-for"] || req.connection.remoteAddress
