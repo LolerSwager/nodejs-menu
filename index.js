@@ -73,7 +73,9 @@ app.get("/api", (req, res) => {
 app.get("/info", (req, res) => {
     const ipAddress = req.headers["x-forwarded-for"] || req.connection.remoteAddress
     userCheacker(req)
-    res.send(`[${timeDate()}] Your ip address: ${ipAddress}`)
+    res.send(
+        `[${timeDate()}] Your ip address: ${ipAddress} \n api will run every 30min \n api link: https://nodejs-menu.vercel.app/api?apiKey=techcollege `
+    )
 })
 
 app.listen(process.env.PORT || port, () => console.log(`port is on ${port}`))
