@@ -74,7 +74,7 @@ app.get("/info", (req, res) => {
     const ipAddress = req.headers["x-forwarded-for"] || req.connection.remoteAddress
     userCheacker(req)
     res.send(
-        `[${timeDate()}] Your ip address: ${ipAddress} \n api will run every 30min \n api link: https://nodejs-menu.vercel.app/api?apiKey=techcollege `
+        `<h1>[${timeDate()}] Your ip address: ${ipAddress} \n api will run every 30min \n api link: https://nodejs-menu.vercel.app/api?apiKey=techcollege </h1>`
     )
 })
 
